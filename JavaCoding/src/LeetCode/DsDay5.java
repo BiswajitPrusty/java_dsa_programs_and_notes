@@ -5,7 +5,9 @@ import java.util.HashSet;
 public class DsDay5 {
     public static void main(String[] args) {
         DsDay5 d = new DsDay5();
-        System.out.println(d.climbStairs(3));
+        char[][] sudo = {{'5', '3', '.', '.', '7', '.', '.', '.', '.'}, {'6', '.', '.', '1', '9', '5', '.', '.', '.'}, {'.', '9', '8', '.', '.', '.', '.', '6', '.'}, {'8', '.', '.', '.', '6', '.', '.', '.', '3'}, {'4', '.', '.', '8', '.', '3', '.', '.', '1'}, {'7', '.', '.', '.', '2', '.', '.', '.', '6'}, {'.', '6', '.', '.', '.', '.', '2', '8', '.'}, {'.', '.', '.', '4', '1', '9', '.', '.', '5'}, {'.', '.', '.', '.', '8', '.', '.', '7', '9'}};
+//        System.out.println(d.climbStairs(3));
+        d.isValidSudoku(sudo);
     }
 
     public boolean searchMatrix(int[][] matrix, int target) {
@@ -52,7 +54,12 @@ public class DsDay5 {
      * Each of the nine 3 x 3 sub-boxes of the grid must contain the digits 1-9 without repetition.
      */
     public boolean isValidSudoku(char[][] board) {
-
+        /**
+         * creating 3 sets array of length 9 as in a sudoku we have 9 rows and 9 columns and from those rows and columsn
+         * there are sub boxes.
+         *
+         * we are going to store all the value in these sets
+         * */
         HashSet<Character>[] row = new HashSet[9];
         HashSet<Character>[] columns = new HashSet[9];
         HashSet<Character>[] cube = new HashSet[9];
@@ -69,12 +76,14 @@ public class DsDay5 {
 
                 if (current == '.') continue;
 
+                //this is the formula to calculate the index of cube(box) with index of row and column, i.e to which box the current value belongs to.
                 int cubeIndex = (i / 3) * 3 + j / 3;
 
                 if (row[i].contains(current) || columns[j].contains(current) || cube[cubeIndex].contains(current)) {
                     return false;
                 }
 
+                //add the current number to its row, column and cubes for checking if it contains duplicate in next iteration.
                 row[i].add(current);
                 columns[j].add(current);
                 cube[cubeIndex].add(current);
