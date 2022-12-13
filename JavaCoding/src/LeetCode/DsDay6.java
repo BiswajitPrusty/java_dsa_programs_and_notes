@@ -7,8 +7,10 @@ public class DsDay6 {
     public static void main(String[] args) {
 
         DsDay6 d = new DsDay6();
-//        d.firstUniqChar("aabb");
-        System.out.println(d.canConstruct("b", "b"));
+
+        d.firstUniqChar("abccc");
+        d.canConstruct("aa", "ab");
+        d.isAnagram("car", "rat");
     }
 
 
@@ -44,7 +46,6 @@ public class DsDay6 {
     }
     /**
      * Given a string s, find the first non-repeating character in it and return its index. If it does not exist, return -1.
-     * <p>
      * Example 1:
      * Input: s = "leetcode"
      * Output: 0
@@ -66,11 +67,8 @@ public class DsDay6 {
 
     /**
      * Given two strings ransomNote and magazine, return true if ransomNote can be constructed by using the letters from magazine and false otherwise.
-     * <p>
      * Each letter in magazine can only be used once in ransomNote.
-     * <p>
      * Example 1:
-     * <p>
      * Input: ransomNote = "aab", magazine = "baa"
      * Output: true
      */
