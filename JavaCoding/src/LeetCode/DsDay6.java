@@ -10,9 +10,31 @@ public class DsDay6 {
 
         d.firstUniqChar("abccc");
         d.canConstruct("aa", "ab");
-        d.isAnagram("car", "rat");
+        d.isAnagram2("car", "rat");
     }
 
+    public boolean isAnagram2(String s, String t) {
+        if(s.length() != t.length()) return false;
+
+        // create freq array with size 26 as we have 26 lowercase English characters
+        int[] freq = new int[26];
+
+        // increase the frequency of each character in String s
+        // decrease the frequency of each character in String t
+        for(int i = 0;  i < s.length();  i++){
+            char ch1 = s.charAt(i);
+            char ch2 = t.charAt(i);
+            freq[ch1 - 'a']++;
+            freq[ch2-'a']--;
+        }
+        /* check all values in freq[], if all values in the freq[] is 0,
+        means both Strings have same frequency of same characters, then return true,
+        else return false */
+        for(int i = 0; i< 26; i++){
+            if(freq[i] != 0) return false;
+        }
+        return true;
+    }
 
     /**
      * Given two strings s and t, return true if t is an anagram of s, and false otherwise.
