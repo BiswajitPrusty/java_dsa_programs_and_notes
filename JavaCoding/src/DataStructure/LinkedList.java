@@ -27,7 +27,7 @@ public class LinkedList {
 
     public void insert(int index, int value) {
         if (index < 0 || index > length) {
-            throw new IndexOutOfBoundsException("length dek bhai phele");
+            throw new IndexOutOfBoundsException("");
         } else if (index == 0)
             prepend(value);
         else if (index == length)
@@ -48,7 +48,7 @@ public class LinkedList {
     public void remove(int index) {
 
         if (index < 0 || index > length) {
-            throw new IndexOutOfBoundsException("kya re length dek");
+            throw new IndexOutOfBoundsException("");
         } else if (index == 0) {
             head = this.head.next;
             length--;
