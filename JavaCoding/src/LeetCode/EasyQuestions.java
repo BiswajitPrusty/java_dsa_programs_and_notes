@@ -6,13 +6,37 @@ public class EasyQuestions {
 
     public static void main(String[] args) {
         EasyQuestions e = new EasyQuestions();
-        e.romanToInt("MCMXCIV");
-        e.reverseString(new char[]{'h', 'e', 'l'});
+//        e.romanToInt("MCMXCIV");
+//        e.reverseString(new char[]{'h', 'e', 'l'});
+//        e.singleNumber(new int[]{'h', 'h', 'l'});
+    }
+
+    public int singleNumber(int[] nums) {
+
+        HashMap<Integer, Integer> count = new HashMap<>();
+        for (int i = 0; i < nums.length; i++) {
+            count.put(nums[i], count.getOrDefault(nums[i], 0) + 1);
+            Integer counter = count.get(nums[i]);
+            if (counter != null && counter == 2) {
+                count.remove(nums[i]);
+            }
+        }
+        Object o = count.keySet().toArray()[0];
+        return (Integer) o;
     }
 
     public int maxDepth(TreeNode root) {
+        // base case: if the root is null, the maximum depth is 0
+        if (root == null) {
+            return 0;
+        }
 
-        return -1;
+        // compute the maximum depth of the left and right subtrees
+        int leftDepth = maxDepth(root.left);
+        int rightDepth = maxDepth(root.right);
+
+        // return the maximum of the two depths, plus 1 for the current node
+        return Math.max(leftDepth, rightDepth) + 1;
     }
 
     public void reverseString(char[] s) {
