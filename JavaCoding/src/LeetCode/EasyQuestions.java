@@ -1,6 +1,7 @@
 package LeetCode;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
@@ -11,7 +12,79 @@ public class EasyQuestions {
 //        e.romanToInt("MCMXCIV");
 //        e.reverseString(new char[]{'h', 'e', 'l'});
 //        e.singleNumber(new int[]{'h', 'h', 'l'});
-        System.out.println(e.fizzBuzz(3));
+//        System.out.println(e.fizzBuzz(3));
+        e.majorityElement(new int[]{1, 2, 3, 3, 2, 2});
+    }
+
+    /*
+    Input: nums = [3,0,1]
+    Output: 2
+    Explanation: n = 3 since there are 3 numbers,
+    so all numbers are in the range [0,3]. 2 is the missing number in the range since it does not appear in nums.
+     */
+    public int missingNumber(int[] nums) {
+
+        int sum = 0;
+        for(int num: nums)
+            sum += num;
+
+        return (nums.length * (nums.length + 1) )/ 2 - sum;
+    }
+
+    /**
+     * using Moore's voting algorithm
+     * This can be solved by Moore's voting algorithm. Basic idea of the algorithm is if we cancel out each
+     * occurrence of an element e with all the other elements that are different from e then e will exist till end
+     * if it is a majority element. Below code loops through each element and maintains a count of the element that
+     * has the potential of being the majority element. If next element is same then increments the count,
+     * otherwise decrements the count. If the count reaches 0 then update the potential index to the current element and sets count to 1.
+     */
+    public int majorityElement(int[] num) {
+
+        int majorityIndex = 0;
+        for (int count = 1, i = 1; i < num.length; i++) {
+            int i1 = num[majorityIndex] == num[i] ? count++ : count--;
+            if (count == 0) {
+                majorityIndex = i;
+                count = 1;
+            }
+        }
+
+        return num[majorityIndex];
+    }
+
+    /**
+     * Input: n = 00000000000000000000000000001011
+     * Output: 3
+     * Explanation: The input binary string 00000000000000000000000000001011 has a total of three '1' bits.
+     */
+    /**
+     * a	b	a & b
+     * 0	0	0
+     * 0	1	0
+     * 1	0	0
+     * 1	1	1
+     * Let's take a look at the bitwise AND operation of two integers 12 and 25.
+     * <p>
+     * 12 = 00001100 (In Binary)
+     * 25 = 00011001 (In Binary)
+     * <p>
+     * // Bitwise AND Operation of 12 and 25
+     * 00001100
+     * & 00011001
+     * ____________
+     * 00001000 = 8 (In Decimal)
+     */
+
+    public int hammingWeight(int n) {
+
+        int counter = 0;
+        while (n != 0) {
+            counter = counter + (n & 1);
+
+            n = n >>> 1;
+        }
+        return counter;
     }
 
     /**
