@@ -1,7 +1,6 @@
 package LeetCode;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
@@ -9,12 +8,124 @@ public class EasyQuestions {
 
     public static void main(String[] args) {
         EasyQuestions e = new EasyQuestions();
-//        e.romanToInt("MCMXCIV");
-//        e.reverseString(new char[]{'h', 'e', 'l'});
-//        e.singleNumber(new int[]{'h', 'h', 'l'});
-//        System.out.println(e.fizzBuzz(3));
-        e.majorityElement(new int[]{1, 2, 3, 3, 2, 2});
+        System.out.println(e.titleToNumber("AA"));
+
     }
+
+    /*
+    For example:
+    A -> 1
+    B -> 2
+    C -> 3
+    
+    Z -> 26
+    AA -> 27
+    AB -> 28 
+     */
+    public int titleToNumber(String columnTitle) {
+        int result = 0;
+        for (int i = 0; i < columnTitle.length(); i++) {
+            result *= 26;
+            result += columnTitle.charAt(i) - 'A' + 1;
+        }
+        return result;
+    }
+
+    /**
+     * Input: nums = [1,1,2]
+     * Output: 2, nums = [1,2,_]
+     * Explanation: Your function should return k = 2, with the first two elements of nums being
+     * 1 and 2 respectively.
+     * It does not matter what you leave beyond the returned k (hence they are underscores).
+     */
+    public int removeDuplicates(int[] nums) {
+
+        int ans = 0;
+
+        return ans;
+    }
+
+    /*
+            Given a non-negative integer x, return the square root of x rounded down to the nearest integer.
+            The returned integer should be non-negative as well.
+            Input: x = 4
+            Output: 2
+            Explanation: The square root of 4 is 2, so we return 2.
+     */
+    public int mySqrt(int x) {
+
+        if (x == 0) return 0;
+        int start = 1, end = x;
+        while (start < end) {
+            int mid = start + (end - start) / 2;
+            if (mid <= x / mid && (mid + 1) > x / (mid + 1))// Found the result
+                return mid;
+            else if (mid > x / mid)// Keep checking the left part
+                end = mid;
+            else
+                start = mid + 1;// Keep checking the right part
+        }
+        return start;
+    }
+
+    /*
+    Write a function to find the longest common prefix string amongst an array of strings.
+    If there is no common prefix, return an empty string "".
+    Example 1:
+    Input: strs = ["flower","flow","flight"]
+    Output: "fl"
+     */
+    public String longestCommonPrefix(String[] strs) {
+
+        // Edge case: if the input array is null or empty, return an empty string
+        if (strs == null || strs.length == 0) {
+            return "";
+        }
+
+        // Take the first string as the reference prefix
+        String prefix = strs[0];
+
+        // Iterate through the characters in the prefix
+        for (int i = 0; i < prefix.length(); i++) {
+            // Get the character at the current index
+            char c = prefix.charAt(i);
+            // Iterate through the strings
+            for (int j = 1; j < strs.length; j++) {
+                // If the character at the current index is not the same in one of the strings,
+                // or the current string is shorter than the prefix, return the result obtained so far
+                if (i >= strs[j].length() || strs[j].charAt(i) != c) {
+                    return prefix.substring(0, i);
+                }
+            }
+        }
+
+        // If all the characters in the prefix are the same in all the strings, return the prefix
+        return prefix;
+    }
+
+    /*
+    Given an integer array nums, move all 0's to the end of it while maintaining the relative order of the non-zero elements.
+    Note that you must do this in-place without making a copy of the array.
+
+    Example 1:
+    Input: nums = [0,1,0,3,12]
+    Output: [1,3,12,0,0]
+     */
+    public void moveZeroes(int[] nums) {
+        /*
+        iterate over array put the non-zero numbers to the front index and increment the index to put all zeros
+        from the point where index ends in the first loop.
+         */
+        int index = 0;
+        for (int num : nums)
+            if (num != 0)
+                nums[index++] = num;
+        for (int i = index; i < nums.length; i++)
+            nums[i] = 0;
+        for (int i : nums)
+            System.out.println(i);
+    }
+
 
     /*
     Input: nums = [3,0,1]
@@ -25,10 +136,10 @@ public class EasyQuestions {
     public int missingNumber(int[] nums) {
 
         int sum = 0;
-        for(int num: nums)
+        for (int num : nums)
             sum += num;
 
-        return (nums.length * (nums.length + 1) )/ 2 - sum;
+        return (nums.length * (nums.length + 1)) / 2 - sum;
     }
 
     /**
