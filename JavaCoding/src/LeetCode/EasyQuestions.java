@@ -1,15 +1,99 @@
 package LeetCode;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 public class EasyQuestions {
 
     public static void main(String[] args) {
         EasyQuestions e = new EasyQuestions();
-        System.out.println(e.titleToNumber("AA"));
 
+        ListNode l = new ListNode(1);
+        ListNode l1 = new ListNode(2);
+        ListNode l12 = new ListNode(6);
+        ListNode l2 = new ListNode(3);
+        ListNode l3 = new ListNode(4);
+
+        l.next = l1;
+        l1.next = l12;
+        l12.next = l3;
+        l2.next = l3;
+        l3.next = new ListNode(123);
+        System.out.println(e.getIntersectionNode(l, l2).val);
+    }
+
+    public int[] getConcatenation(int[] nums) {
+        int ans[] = new int[nums.length * 2];
+
+        int length = nums.length;
+        for(int i = 0; i < length; i++){
+            ans[i] =  nums[i];
+            ans[length + i] = nums[i];
+        }
+        return ans;
+    }
+    public int[] buildArray(int[] nums) {
+
+        int ans[] = new int[nums.length];
+        for(int i = 0; i < nums.length; i++){
+
+            ans[i] = nums[nums[i]];
+        }
+        return ans;
+    }
+    public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+
+        int lenA = length(headA), lenB = length(headB);
+        // move headA and headB to the same start point
+        while (lenA > lenB) {
+            headA = headA.next;
+            lenA--;
+        }
+        while (lenA < lenB) {
+            headB = headB.next;
+            lenB--;
+        }
+        // find the intersection until end
+        while (headA != headB) {
+            headA = headA.next;
+            headB = headB.next;
+        }
+        return headA;
+    }
+
+    private int length(ListNode node) {
+        int length = 0;
+        while (node != null) {
+            node = node.next;
+            length++;
+        }
+        return length;
+    }
+
+    /*
+    Input: n = 19
+    Output: true
+    Explanation:
+    12 + 92 = 82
+    82 + 22 = 68
+    62 + 82 = 100
+    12 + 02 + 02 = 1
+     */
+    public boolean isHappy(int n) {
+
+        Set<Integer> checkNumber = new HashSet<>();
+        int result = 0;
+        while (checkNumber.add(n)) {
+            result = 0;
+            while (n >= 1) {
+                int lastNumber = n % 10;
+                result += lastNumber * lastNumber;
+                n = n / 10;
+            }
+            if (result == 1) return true;
+            else n = result;
+
+        }
+        return false;
     }
 
     /*
