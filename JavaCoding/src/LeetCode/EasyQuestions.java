@@ -21,6 +21,17 @@ public class EasyQuestions {
 
     }
 
+    public boolean isSymmetric(TreeNode root) {
+        if (root == null) return true;
+        return isMirror(root.left, root.right);
+    }
+
+    public boolean isMirror(TreeNode t1, TreeNode t2) {
+        if (t1 == null && t2 == null) return true;
+        if (t1 == null || t2 == null) return false;
+        return (t1.val == t2.val) && isMirror(t1.right, t2.left) && isMirror(t1.left, t2.right);
+    }
+
     public boolean isPalindrome(String s) {
 
         String check = "";
@@ -31,7 +42,7 @@ public class EasyQuestions {
                 check = s.charAt(i) + check;
                 reverse = reverse + s.charAt(i);
             }
-            if('0' <= s.charAt(i) && s.charAt(i) <= '9') {
+            if ('0' <= s.charAt(i) && s.charAt(i) <= '9') {
                 check = s.charAt(i) + check;
                 reverse = reverse + s.charAt(i);
             }
