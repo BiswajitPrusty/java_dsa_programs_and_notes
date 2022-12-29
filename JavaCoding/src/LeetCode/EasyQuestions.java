@@ -18,28 +18,62 @@ public class EasyQuestions {
         l12.next = l3;
         l2.next = l3;
         l3.next = new ListNode(123);
-        System.out.println(e.getIntersectionNode(l, l2).val);
+
+    }
+
+    public boolean isPalindrome(String s) {
+
+        String check = "";
+        String reverse = "";
+        s = s.toLowerCase();
+        for (int i = 0; i < s.length(); i++) {
+            if ('a' <= s.charAt(i) && s.charAt(i) <= 'z') {
+                check = s.charAt(i) + check;
+                reverse = reverse + s.charAt(i);
+            }
+            if('0' <= s.charAt(i) && s.charAt(i) <= '9') {
+                check = s.charAt(i) + check;
+                reverse = reverse + s.charAt(i);
+            }
+
+        }
+        return reverse.equalsIgnoreCase(check);
+    }
+
+    public int[] plusOne(int[] digits) {
+        for (int i = digits.length - 1; i >= 0; i--) {
+            if (digits[i] < 9) {
+                digits[i]++;
+                return digits;
+            }
+            digits[i] = 0;
+        }
+        int[] a = new int[digits.length + 1];
+        a[0] = 1;
+        return a;
     }
 
     public int[] getConcatenation(int[] nums) {
         int ans[] = new int[nums.length * 2];
 
         int length = nums.length;
-        for(int i = 0; i < length; i++){
-            ans[i] =  nums[i];
+        for (int i = 0; i < length; i++) {
+            ans[i] = nums[i];
             ans[length + i] = nums[i];
         }
         return ans;
     }
+
     public int[] buildArray(int[] nums) {
 
         int ans[] = new int[nums.length];
-        for(int i = 0; i < nums.length; i++){
+        for (int i = 0; i < nums.length; i++) {
 
             ans[i] = nums[nums[i]];
         }
         return ans;
     }
+
     public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
 
         int lenA = length(headA), lenB = length(headB);
