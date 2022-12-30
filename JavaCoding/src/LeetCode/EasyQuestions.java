@@ -21,6 +21,18 @@ public class EasyQuestions {
 
     }
 
+    public void deleteNode(ListNode node) {
+        ListNode temp = node;
+        ListNode prev = temp;
+        while (temp.next != null) {
+            temp.val = temp.next.val;
+            prev = temp;
+            temp = temp.next;
+        }
+        prev.next = null;
+
+    }
+
     public boolean isSymmetric(TreeNode root) {
         if (root == null) return true;
         return isMirror(root.left, root.right);
