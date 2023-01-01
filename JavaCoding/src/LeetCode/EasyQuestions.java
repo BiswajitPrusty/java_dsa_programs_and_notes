@@ -18,7 +18,48 @@ public class EasyQuestions {
         l12.next = l3;
         l2.next = l3;
         l3.next = new ListNode(123);
+        System.out.println(e.permute(new int[]{1, 2, 3}));
 
+    }
+
+    /*
+    Given an integer n, return true if it is a power of three. Otherwise, return false.
+    An integer n is a power of three, if there exists an integer x such that n == 3x.
+    Example 1:
+    Input: n = 27
+    Output: true
+    Explanation: 27 = 33
+     */
+    public boolean isPowerOfThree(int n) {
+        while (n > 1 && n % 3 == 0) n /= 3;
+        return n == 1;
+    }
+
+    public List<List<Integer>> permute(int[] nums) {
+
+        List<List<Integer>> permutations = new ArrayList<>();
+        generatePermutations(permutations, new ArrayList<>(), nums);
+        return permutations;
+    }
+
+    /*
+    Permutations: [1,2,3] tempList of backtracking solution displayed here:,
+    Before removal: 1, Before removal: 1 2, Before removal: 1 2 3, After removal: 1 2, After removal: 1, Before removal: 1 3, Before removal: 1 3 2, After removal: 1 3, After removal: 1, After removal:,
+    Before removal: 2, Before removal: 2 1, Before removal: 2 1 3, After removal: 2 1, After removal: 2, Before removal: 2 3, Before removal: 2 3 1, After removal: 2 3, After removal: 2, After removal:,
+    Before removal: 3, Before removal: 3 1, Before removal: 3 1 2, After removal: 3 1, After removal: 3, Before removal: 3 2, Before removal: 3 2 1, After removal: 3 2, After removal: 3, After removal:
+     */
+    public void generatePermutations(List<List<Integer>> permutations, List<Integer> currentPermutation, int[] nums) {
+        if (currentPermutation.size() == nums.length) {
+            permutations.add(new ArrayList<>(currentPermutation));
+            return;
+        }
+        for (int i = 0; i < nums.length; i++) {
+            if (currentPermutation.contains(nums[i]))
+                continue;
+            currentPermutation.add(nums[i]);
+            generatePermutations(permutations, currentPermutation, nums);
+            currentPermutation.remove(currentPermutation.size() - 1);
+        }
     }
 
     public void deleteNode(ListNode node) {
@@ -181,9 +222,13 @@ public class EasyQuestions {
      */
     public int removeDuplicates(int[] nums) {
 
-        int ans = 0;
-
-        return ans;
+        int i = 0;
+        for (int n : nums) {
+            if (i == 0 || n > nums[i - 1]) {
+                nums[i++] = n;
+            }
+        }
+        return i;
     }
 
     /*
