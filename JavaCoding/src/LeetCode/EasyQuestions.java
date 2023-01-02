@@ -9,17 +9,55 @@ public class EasyQuestions {
 
         ListNode l = new ListNode(1);
         ListNode l1 = new ListNode(2);
-        ListNode l12 = new ListNode(6);
-        ListNode l2 = new ListNode(3);
-        ListNode l3 = new ListNode(4);
+        ListNode l12 = new ListNode(2);
+        ListNode l2 = new ListNode(2);
+        ListNode l3 = new ListNode(1);
 
         l.next = l1;
         l1.next = l12;
-        l12.next = l3;
+        l12.next = l2;
         l2.next = l3;
-        l3.next = new ListNode(123);
-        System.out.println(e.permute(new int[]{1, 2, 3}));
+        System.out.println(e.isPalindrome(l));
+    }
 
+    public int reverseBits(int n) {
+        if (n == 0) return n;
+
+        int result = 0;
+        for (int i = 0; i < 32; i++) {
+            result <<= 1;
+            if ((n & 1) == 1) result++;
+            n >>= 1;
+        }
+        return result;
+    }
+
+    public boolean isPalindrome(ListNode head) {
+        ListNode fast = head;
+        ListNode slow = head;
+
+        while (fast != null && fast.next != null) {
+            fast = fast.next.next;
+            slow = slow.next;
+        }
+        ListNode temp, prev;
+        prev = slow;
+        slow = slow.next;
+        prev.next = null;
+        while (slow != null) {
+            temp = slow.next;
+            slow.next = prev;
+            prev = slow;
+            slow = temp;
+        }
+        slow = prev;
+        fast = head;
+        while (slow != null && fast != null) {
+            if (slow.val != fast.val) return false;
+            slow = slow.next;
+            fast = fast.next;
+        }
+        return true;
     }
 
     /*
@@ -362,10 +400,8 @@ public class EasyQuestions {
      * 1	0	0
      * 1	1	1
      * Let's take a look at the bitwise AND operation of two integers 12 and 25.
-     * <p>
      * 12 = 00001100 (In Binary)
      * 25 = 00011001 (In Binary)
-     * <p>
      * // Bitwise AND Operation of 12 and 25
      * 00001100
      * & 00011001
