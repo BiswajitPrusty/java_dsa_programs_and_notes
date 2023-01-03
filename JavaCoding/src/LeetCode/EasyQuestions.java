@@ -3,7 +3,6 @@ package LeetCode;
 import java.util.*;
 
 public class EasyQuestions {
-
     public static void main(String[] args) {
         EasyQuestions e = new EasyQuestions();
 
@@ -17,7 +16,133 @@ public class EasyQuestions {
         l1.next = l12;
         l12.next = l2;
         l2.next = l3;
-        System.out.println(e.isPalindrome(l));
+        e.rotate(new int[][]{{1, 2, 3}, {4, 5, 6}, {7, 8, 9}});
+    }
+
+    public int[][] gameOfLife(int[][] board) {
+        int m = board.length;
+        int n = board[0].length;
+
+        // Create a copy of the original board
+        int[][] copy = new int[m][n];
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                copy[i][j] = board[i][j];
+            }
+        }
+
+        // Iterate through every cell in the board
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                // Count the number of live neighbors of cell (i, j)
+                int liveNeighbors = countLiveNeighbors(copy, i, j);
+
+                // Apply the rules to determine the next state of cell (i, j)
+                if (copy[i][j] == 1) {
+                    // Rule 1 and 3
+                    if (liveNeighbors < 2 || liveNeighbors > 3) {
+                        board[i][j] = 0;
+                    }
+                    // Rule 2
+                    else if (liveNeighbors == 2 || liveNeighbors == 3) {
+                        board[i][j] = 1;
+                    }
+                } else {
+                    // Rule 4
+                    if (liveNeighbors == 3) {
+                        board[i][j] = 1;
+                    }
+                }
+            }
+        }
+
+        return board;
+    }
+
+    // Helper function that counts the number of live neighbors of cell (row, col)
+    public int countLiveNeighbors(int[][] board, int row, int col) {
+        int count = 0;
+        int m = board.length;
+        int n = board[0].length;
+
+        // Check the top-left neighbor
+        if (row > 0 && col > 0 && board[row - 1][col - 1] == 1) {
+            count++;
+        }
+        // Check the top neighbor
+        if (row > 0 && board[row - 1][col] == 1) {
+            count++;
+        }
+        // Check the top-right neighbor
+        if (row > 0 && col < n - 1 && board[row - 1][col + 1] == 1) {
+            count++;
+        }
+        // Check the left neighbor
+        if (col > 0 && board[row][col - 1] == 1) count++;
+
+        // check the right neighbor
+        if (col < n - 1 && board[row][col + 1] == 1) count++;
+
+        // check the bottom-left neighbor
+        if (row < m - 1 && col > 0 && board[row + 1][col - 1] == 1) count++;
+
+        //check the bottom neighbor
+        if (row < m - 1 && board[row + 1][col] == 1) count++;
+
+        //check the bottom-right neighbor
+        if (row < m - 1 && col < n - 1 && board[row + 1][col + 1] == 1) count++;
+
+        return count;
+
+    }
+
+    /*
+    The idea was firstly transpose the matrix and then flip it symmetrically. For instance,
+    1  2  3
+    4  5  6
+    7  8  9
+    after transpose, it will be swap(matrix[i][j], matrix[j][i])
+    1  4  7
+    2  5  8
+    3  6  9
+    Then flip the matrix horizontally. (swap(matrix[i][j], matrix[i][matrix.length-1-j])
+    7  4  1
+    8  5  2
+    9  6  3
+     */
+    public void rotate(int[][] matrix) {
+
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = i; j < matrix[0].length; j++) {
+                int temp = matrix[i][j];
+                matrix[i][j] = matrix[j][i];
+                matrix[j][i] = temp;
+            }
+        }
+        for (int i = 0; i < matrix.length; i++) {
+            int temp = matrix[i][0];
+            matrix[i][0] = matrix[i][matrix[0].length - 1];
+            matrix[i][matrix[0].length - 1] = temp;
+        }
+        for (int[] a : matrix) {
+            System.out.println(Arrays.toString(a));
+        }
+    }
+
+    public List<List<Integer>> subsets(int[] nums) {
+        List<List<Integer>> subset = new ArrayList<>();
+
+        backTrack(subset, new ArrayList<>(), nums, 0);
+        return subset;
+    }
+
+    public void backTrack(List<List<Integer>> list, List<Integer> tempList, int[] nums, int start) {
+        list.add(new ArrayList<>(tempList));
+        for (int i = start; i < nums.length; i++) {
+            tempList.add(nums[i]);
+            backTrack(list, tempList, nums, i + 1);
+            tempList.remove(tempList.size() - 1);
+        }
     }
 
     public int reverseBits(int n) {
@@ -86,7 +211,8 @@ public class EasyQuestions {
     Before removal: 2, Before removal: 2 1, Before removal: 2 1 3, After removal: 2 1, After removal: 2, Before removal: 2 3, Before removal: 2 3 1, After removal: 2 3, After removal: 2, After removal:,
     Before removal: 3, Before removal: 3 1, Before removal: 3 1 2, After removal: 3 1, After removal: 3, Before removal: 3 2, Before removal: 3 2 1, After removal: 3 2, After removal: 3, After removal:
      */
-    public void generatePermutations(List<List<Integer>> permutations, List<Integer> currentPermutation, int[] nums) {
+    public void generatePermutations(List<List<Integer>> permutations, List<Integer> currentPermutation,
+                                     int[] nums) {
         if (currentPermutation.size() == nums.length) {
             permutations.add(new ArrayList<>(currentPermutation));
             return;
