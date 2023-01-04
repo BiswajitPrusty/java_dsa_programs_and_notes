@@ -16,7 +16,33 @@ public class EasyQuestions {
         l1.next = l12;
         l12.next = l2;
         l2.next = l3;
-        e.rotate(new int[][]{{1, 2, 3}, {4, 5, 6}, {7, 8, 9}});
+        System.out.println(e.groupAnagrams(new String[]{"eat", "tea", "tan", "ate", "nat", "bat"}));
+    }
+
+    public List<List<String>> groupAnagrams(String[] strs) {
+
+        Map<String, List<String>> list = new HashMap<>();
+
+        for (int i = 0; i < strs.length; i++) {
+            String val = strs[i];
+            char[] sorted = val.toCharArray();
+            Arrays.sort(sorted);
+            String key = new String(sorted);
+
+            if (list.containsKey(key)) {
+                List<String> strings = list.get(key);
+                strings.add(val);
+                list.put(key, strings);
+
+            } else {
+                List<String> newVal = new ArrayList<>();
+                newVal.add(val);
+                list.put(key, newVal);
+            }
+        }
+        List<List<String>> result = new ArrayList<>();
+        list.values().forEach(lis -> result.add(lis));
+        return result;
     }
 
     public int[][] gameOfLife(int[][] board) {
