@@ -1,6 +1,4 @@
-package hardQuestions.arrays;
-
-import java.util.Arrays;
+package questions.arrays;
 
 public class TrappingRainWater42 {
 
@@ -13,24 +11,21 @@ public class TrappingRainWater42 {
         int[] leftWall = new int[len];
         int[] rightWall = new int[len];
 
-        int wallHeight = 0;
-
-        for (int i = 0; i < len; i++) {
-            if (height[i] > wallHeight) {
-                wallHeight = height[i];
-                leftWall[i] = wallHeight;
+        int leftWallHeight = 0;
+        int rightWallHeight = 0;
+        for (int i = 0, j = len - 1; i < len & len >=0; i++, j--) {
+            if (height[i] > leftWallHeight) {
+                leftWallHeight = height[i];
+                leftWall[i] = leftWallHeight;
             } else {
-                leftWall[i] = wallHeight;
+                leftWall[i] = leftWallHeight;
             }
-        }
 
-        wallHeight = 0;
-        for (int i = len - 1; i >= 0; i--) {
-            if (height[i] > wallHeight) {
-                wallHeight = height[i];
-                rightWall[i] = wallHeight;
+            if (height[j] > rightWallHeight) {
+                rightWallHeight = height[j];
+                rightWall[j] = rightWallHeight;
             } else {
-                rightWall[i] = wallHeight;
+                rightWall[j] = rightWallHeight;
             }
         }
         int n = 0, sum = 0;

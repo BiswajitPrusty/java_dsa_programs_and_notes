@@ -1,4 +1,4 @@
-package easyQuestions.strings;
+package questions.strings;
 
 public class LengthOfLastWord58 {
 
