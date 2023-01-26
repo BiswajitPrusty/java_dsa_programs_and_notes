@@ -2,11 +2,7 @@ package questions.maths;
 
 public class AddBinary67 {
 
-    public static void main(String[] args) {
-        AddBinary67 a = new AddBinary67();
-
-    }
-    public  String addBinary(String a, String b) {
+    public static String addBinary(String a, String b) {
         // First, create result name string and intially it is empty & in the end we gonna return it as our aswer
         StringBuilder res = new StringBuilder();
         int i = a.length() - 1; // we crete i pointer for string a and we have to start adding from right to left
