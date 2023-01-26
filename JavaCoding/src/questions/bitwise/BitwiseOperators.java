@@ -1,4 +1,4 @@
-package easyQuestions.bitwise;
+package questions.bitwise;
 
 
 public class BitwiseOperators {

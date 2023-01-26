@@ -1,4 +1,4 @@
-package easyQuestions.maths;
+package questions.maths;
 
 public class AllDivisorsOfNumber {
 

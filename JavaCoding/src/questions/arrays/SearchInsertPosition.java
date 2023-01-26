@@ -1,4 +1,4 @@
-package easyQuestions.arrays;
+package questions.arrays;
 
 public class SearchInsertPosition {
     public static void main(String[] args) {

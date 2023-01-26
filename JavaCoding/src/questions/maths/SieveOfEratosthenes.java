@@ -1,4 +1,4 @@
-package easyQuestions.maths;
+package questions.maths;
 
 import java.util.Arrays;
 
