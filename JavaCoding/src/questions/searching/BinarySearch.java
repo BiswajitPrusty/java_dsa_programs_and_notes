@@ -1,4 +1,4 @@
-package questions.searchingAlgos;
+package questions.searching;
 
 public class BinarySearch {
 
