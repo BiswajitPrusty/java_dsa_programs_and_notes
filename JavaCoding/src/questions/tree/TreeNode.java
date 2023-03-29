@@ -1,4 +1,4 @@
-package questionOfDay;
+package questions.tree;
 
 public class TreeNode {
     int val;

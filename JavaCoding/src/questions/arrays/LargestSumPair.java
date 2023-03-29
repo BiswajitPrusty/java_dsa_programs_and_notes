@@ -1,4 +1,4 @@
-package dsaliveclas.arryas;
+package questions.arrays;
 
 public class LargestSumPair {
     public int[] largestContiguous(int a[]) {
