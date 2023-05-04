@@ -6,6 +6,18 @@ public class InsertAtFrontAndBack {
 
     static Node head = null;
 
+    public static void insertAtIndex(int num, int index) {
+        int i = 1;
+        Node curr = head;
+        while (curr != null && i != index) {
+            i++;
+            curr = curr.next;
+        }
+        Node temp = curr.next;
+        curr.next = new Node(num);
+        curr.next.next = temp;
+    }
+
     public static void insertAtFront(int num) {
         Node temp = new Node(num);
         temp.next = head;
@@ -13,9 +25,10 @@ public class InsertAtFrontAndBack {
     }
 
     public static void main(String[] args) {
-        insertAtFront(1);
-        insertAtFront(2);
+        insertAtBack(1);
+        insertAtBack(2);
         insertAtBack(3);
+        insertAtIndex(10,3);
         printValues(head);
     }
 
