@@ -3,7 +3,7 @@ package questions.strings;
 public class FindDifference389 {
 
     public static void main(String[] args) {
-        System.out.println(findTheDifference("a", "aa"));
+        System.out.println(findTheDifference("ab", "aa"));
     }
 
     public static char findTheDifference(String s, String t) {

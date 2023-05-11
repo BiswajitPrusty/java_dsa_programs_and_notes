@@ -18,14 +18,13 @@ public class FirstOccurrenceInString28 {
             j = start;
             while (j < haystack.length() && subStringIndex < needle.length()) {
                 if (needle.charAt(subStringIndex) != haystack.charAt(j)) {
-                    j++;
                     break;
                 } else {
                     subStringIndex++;
                     j++;
                 }
             }
-            if (needle.length() == subStringIndex && needle.charAt(subStringIndex - 1) == haystack.charAt(j - 1)) {
+            if (needle.length() == subStringIndex ) {
                 return start;
             }
         }

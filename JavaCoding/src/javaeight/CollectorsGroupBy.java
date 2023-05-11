@@ -9,8 +9,8 @@ import java.util.stream.IntStream;
 public class CollectorsGroupBy {
     public static void main(String[] args) {
         findFirstRepeatedChar("staatic");
-        findLongestString();
-        skipAndLimitUseCase();
+        getEmployHighSalaryFromEveryDept();
+//        skipAndLimitUseCase();
     }
 
     public static void skipAndLimitUseCase() {
