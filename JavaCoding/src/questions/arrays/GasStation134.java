@@ -1,4 +1,4 @@
-package questionOfDay;
+package questions.arrays;
 
 public class GasStation134 {
 

@@ -1,4 +1,4 @@
-package dsaliveclas.arryas;
+package questions.maths;
 
 public class LongestContiguousSum {
 
