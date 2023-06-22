@@ -114,9 +114,7 @@ public class CollectorsGroupBy {
     public static void countOccurrence(String line) {
 
         Map<String, Long> countMap = Arrays.stream(line.split(""))
-                .collect(Collectors
-                        .groupingBy(Function.identity(),
-                                Collectors.counting()));
+                .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
         System.out.println(countMap);
     }
 
