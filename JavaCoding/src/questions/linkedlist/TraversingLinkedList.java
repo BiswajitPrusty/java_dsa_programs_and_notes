@@ -16,14 +16,14 @@ public class TraversingLinkedList {
 
     public static void traverseViaRecursion(Node node) {
         if (node == null) return;
-        System.out.println(node.data);
+        System.out.println(node.key);
         traverseViaRecursion(node.next);
     }
 
     public static void iterateLinkedList(Node head) {
         Node node = head;
         while (node != null) {
-            System.out.println(node.data);
+            System.out.println(node.key);
             node = node.next;
         }
     }

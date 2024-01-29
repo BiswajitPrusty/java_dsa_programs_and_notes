@@ -35,7 +35,7 @@ public class InsertAtFrontAndBack {
     public static void printValues(Node head) {
         Node temp = head;
         while (temp != null) {
-            System.out.println(temp.data);
+            System.out.println(temp.key);
             temp = temp.next;
         }
     }

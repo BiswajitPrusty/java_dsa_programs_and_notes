@@ -23,7 +23,7 @@ public class SearchLinkedList {
         if (curr == null) {
             return -1;
         }
-        if (curr.data == x) {
+        if (curr.key == x) {
             return 1;
         }
         return findRecursive(x, curr.next);
@@ -33,7 +33,7 @@ public class SearchLinkedList {
         Node curr = head;
         int index = 1;
         while (curr != null) {
-            if (curr.data == x) {
+            if (curr.key == x) {
                 return index;
             }
             curr = curr.next;
