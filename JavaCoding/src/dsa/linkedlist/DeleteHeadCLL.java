@@ -21,7 +21,7 @@ public class DeleteHeadCLL {
     }
 
     //efficient approach
-    public Node delHead(Node head) {
+    public static Node delHead(Node head) {
         if(head == null || head.next == head) return null;
 
         head.key = head.next.key;
