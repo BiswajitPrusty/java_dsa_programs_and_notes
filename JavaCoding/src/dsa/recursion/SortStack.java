@@ -14,7 +14,7 @@ public class SortStack {
     }
 
     public static void insert(Stack<Integer> stack, int temp) {
-        if (stack.isEmpty() || stack.peek() <= temp) {
+        if (stack.isEmpty() || stack.peek() >= temp) {
             stack.push(temp);
             return;
         }
@@ -25,14 +25,11 @@ public class SortStack {
 
     public static void main(String[] args) {
         Stack<Integer> stack = new Stack<>();
-        stack.add(9);
-        stack.add(0);
+        stack.add(3);
+        stack.add(2);
         stack.add(1);
         stack.add(4);
-        stack.add(90);
-        stack.add(67);
-        stack.add(2);
-        stack.add(120);
+
         System.out.println(stack);
         sort(stack);
         System.out.println(stack);

@@ -2,8 +2,24 @@ package questions.arrays;
 
 public class TrappingRainWater42 {
 
+
+    public static int maxArea2(int[] height) {
+
+        int l = 0, r = height.length - 1, maxArea = 0;
+        while (l < r) {
+            int area = (r - l) * Math.min(height[r], height[l]);
+            maxArea = Math.max(maxArea, area);
+            if (height[l] < height[r]) {
+                l++;
+            }else{
+                r--;
+            }
+        }
+        return maxArea;
+    }
+
     public static void main(String[] args) {
-        System.out.println(trap(new int[]{1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1}));
+        System.out.println(maxArea2(new int[]{1,8,6,2,5,4,8,3,7}));
     }
 
     public static int trap(int[] height) {
@@ -13,7 +29,7 @@ public class TrappingRainWater42 {
 
         int leftWallHeight = 0;
         int rightWallHeight = 0;
-        for (int i = 0, j = len - 1; i < len & len >=0; i++, j--) {
+        for (int i = 0, j = len - 1; i < len & len >= 0; i++, j--) {
             if (height[i] > leftWallHeight) {
                 leftWallHeight = height[i];
                 leftWall[i] = leftWallHeight;

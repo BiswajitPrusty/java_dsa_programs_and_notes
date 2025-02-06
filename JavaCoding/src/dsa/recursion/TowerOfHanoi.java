@@ -17,7 +17,7 @@ public class TowerOfHanoi {
     }
 
     public static void main(String[] args) {
-        int solve = solve("A", "C", "B", 2);
+        int solve = solve("A", "C", "B", 3);
         System.out.println(solve);
     }
 }
