@@ -1,6 +1,6 @@
-package questions.arrays;
+package dsa.twopointers;
 
-public class ContainerWithMostWater {
+public class ContainerWithMostWater11 {
     public static void main(String[] args) {
 
         int[] a = {1, 8, 6, 2, 5, 4, 8, 3, 7};
@@ -43,4 +43,6 @@ public class ContainerWithMostWater {
 
         return maxArea;
     }
+
+
 }

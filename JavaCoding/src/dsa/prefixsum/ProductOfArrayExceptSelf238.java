@@ -1,4 +1,4 @@
-package dsa.array.prefixsum;
+package dsa.prefixsum;
 
 import java.util.Arrays;
 

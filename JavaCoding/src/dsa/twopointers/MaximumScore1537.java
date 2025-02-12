@@ -1,6 +1,6 @@
-package dsa.array.twopointers;
+package dsa.twopointers;
 
-public class MaximumScore15 {
+public class MaximumScore1537 {
 
     /*
 
@@ -51,7 +51,7 @@ This approach runs in O(N + M) time, where N and M are the sizes of nums1 and nu
         }
 
         public static void main(String[] args) {
-            MaximumScore15 sol = new MaximumScore15();
+            MaximumScore1537 sol = new MaximumScore1537();
             int[] nums1 = {2, 4, 5, 8, 10};
             int[] nums2 = {4, 6, 8, 9};
             System.out.println(sol.maxSum(nums1, nums2)); // Output: 30
