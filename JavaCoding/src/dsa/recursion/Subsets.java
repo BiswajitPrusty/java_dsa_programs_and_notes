@@ -3,7 +3,7 @@ package dsa.recursion;
 public class Subsets {
 
     public static void main(String[] args) {
-        solve("AAB", "");
+        solve("abca", "");
     }
 
     public static void solve(String input, String output) {
